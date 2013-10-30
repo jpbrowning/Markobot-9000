@@ -8,12 +8,17 @@ class Markobot
    public static void main(String args[])
    {
       String s;
+      Scanner in = new Scanner(System.in);
+      
       YahooScanner prices = new YahooScanner();
       
       System.out.println("Enter the symbol you would like to look up: ");
       s = in.next();
+      Price symbol = prices.getPrice(s);
       
-      System.out.println("\nMarket price for " + s ", 20 minutes ago: );
-      System.out.println(prices.getPrice(s));
+      System.out.println("\nMarket price for " + s + ", with timestamp: ");      
+      System.out.println(symbol.toString());
+      
+      in.close();
    }
 }
