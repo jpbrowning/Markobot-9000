@@ -1,5 +1,5 @@
-# Mark Atkins, James Browning, Eric Markovich
-# Loads a Yahoo! Finance URL and grabs the price from CSV format
+// Mark Atkins, James Browning, Eric Markovich
+// Loads a Yahoo! Finance URL and grabs the price from CSV format
 
 public class YahooScanner
 {
