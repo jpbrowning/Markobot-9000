@@ -1,5 +1,5 @@
-# Mark Atkins, James Browning, Eric Markovich
-# Main class for MARKOBOT-9000
+// Mark Atkins, James Browning, Eric Markovich
+// Main class for MARKOBOT-9000
 
 import java.util.Scanner;
  
