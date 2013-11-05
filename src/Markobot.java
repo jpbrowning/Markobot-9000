@@ -3,21 +3,21 @@
 
 import java.util.Scanner;
  
-class Markobot
-{
-   public static void main(String args[])
-   {
+class Markobot {
+   public static void main(String args[]) {
+	   
       String s;
       Scanner in = new Scanner(System.in);
       
-      YahooScanner prices = new YahooScanner();
+      PriceCollection data = new PriceCollection();
       
       System.out.println("Enter the symbol you would like to look up: ");
       s = in.next();
-      Price symbol = prices.getPrice(s);
       
-      System.out.println("\nMarket price for " + s + ", with timestamp: ");      
-      System.out.println(symbol.toString());
+      data.add(s);
+      
+      data.writeOut();
+      data.printOut();
       
       in.close();
    }
