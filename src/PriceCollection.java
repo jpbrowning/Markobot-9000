@@ -1,39 +1,50 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PriceCollection {
+	String symbol;
 	YahooScanner scan = new YahooScanner();
 	ArrayList<Price> prices;
-	
-	public PriceCollection() {
+
+	public PriceCollection(String s) {
+		this.symbol = s;
 		prices = new ArrayList<Price>();
-	}	
-	
-	public void add(String s) {
-		prices.add(scan.getPrice(s));
 	}
-	
+
+	public void getPrice() {
+		prices.add(scan.getPrice(symbol));
+	}
+
 	public void printOut() {
-		for(Price p : prices){
+		for (Price p : prices) {
 			System.out.println(p.toString());
 		}
 	}
-	
+
 	public void writeOut() {
-		String filename= "../data.txt";
-	    FileWriter fw;
+
+		Calendar calendar = Calendar.getInstance();
+		Date dt = new Date();
+		calendar.setTime(dt);
+		String filename = "../" + calendar.get(Calendar.DATE) + "-"
+				+ (calendar.get(Calendar.MONTH) + 1) + "-"
+				+ calendar.get(Calendar.YEAR) + "-" + "S" + "-" + symbol;
+
+		FileWriter fw;
 		try {
-			fw = new FileWriter(filename,true);
-			for(Price p : prices){
+			fw = new FileWriter(filename, true);
+			for (Price p : prices) {
 				fw.write(p.toString() + "\n");
-				
+
 			}
-		    fw.close();
+			fw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
+
 	}
 }
