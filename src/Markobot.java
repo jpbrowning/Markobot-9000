@@ -14,19 +14,24 @@ class Markobot {
 		grabbing = false;
 		
 		Scanner in = new Scanner(System.in);
-		int input = 0;		
+		String input = "";		
 		
 		System.out.println("Welcome to MarkoBot-9000\n");		
 		menu();
-		input = Integer.parseInt(in.nextLine());
-		while(input != 2) {
-			if(input == 1) {
-				System.out.print("Price grabbing has begun. Output files will be saved to parent directory.\n");
+		input = in.nextLine();
+		while(!input.equals("2")) {
+			
+			if(input.equals("1")) {
+				System.out.print("\nPrice grabbing has begun. Output files will be saved to parent directory.\n");
 				grabbing = true;
 				collect();
 			}
+			else {
+				System.out.println("\nInvalid input.\n");
+			}
+			
 			menu();
-			input = Integer.parseInt(in.nextLine());
+			input = in.nextLine();
 		}
 		
 		System.exit(0);
