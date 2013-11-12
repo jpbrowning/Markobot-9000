@@ -1,5 +1,5 @@
 public class Price {
-  public String symbol;
+	public String symbol;
 	public double value;
 	public String date;
 	public String time;
