@@ -15,8 +15,8 @@ public class SwagMath {
 	//maps each stock Symbol to a list of its hourly prices
 	public Map<String, List<Price>> stockmap = new HashMap<String, List<Price>>();
 	
-	//maps each stock Symbol to a list of its hourly prices
-	public Map<String, List<Tweet>> sentmap = new HashMap<String, List<Tweet>>();
+	//maps each stock Symbol to a list of its hourly sentiments
+	public Map<String, List<HourlySent>> sentmap = new HashMap<String, List<HourlySent>>();
 	
 	//constructor
 	public SwagMath(){
@@ -57,9 +57,9 @@ public class SwagMath {
 					/////ASSUMING Tweet Class outputs to file 24 lines of 
 					/////	symbol + " " + sentiment + " " + date + " " + time/////
 					//*** I think I actually need a Sentiment class similar to Price ***/
-					Tweet t = new Tweet(hoursent[0], hoursent[1], hoursent[2], hoursent[3]);
+					HourlySent t = new HourlySent(hoursent[0], Double.parseDouble(hoursent[1]), hoursent[2], hoursent[3]);
 					//add price to list of prices mapped at symbol hoursent[0]
-					List<Tweet> l = sentmap.get(hoursent[0]);
+					List<HourlySent> l = sentmap.get(hoursent[0]);
 					l.add(t);
 					//add updated list back to map
 					sentmap.put(hoursent[0], l);
@@ -69,8 +69,15 @@ public class SwagMath {
 			}catch(Exception e){e.printStackTrace();}
 		}
 		
-		////////////next task: public void read(file){if file == stock -->readStock(); if file == sentiment-->readSentiment()}
+		//Helper 'read' function
 		public void read(String file){
-			if(file.contains("S-"))
+			//Stock market file
+			if(file.contains("-S-")){
+				readStock(file);
+			}
+			//Sentiment tweet file
+			else{
+				readSentiment(file);
+			}
 		}
 }
