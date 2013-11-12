@@ -70,4 +70,7 @@ public class SwagMath {
 		}
 		
 		////////////next task: public void read(file){if file == stock -->readStock(); if file == sentiment-->readSentiment()}
+		public void read(String file){
+			if(file.contains("S-"))
+		}
 }
