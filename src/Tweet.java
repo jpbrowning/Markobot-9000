@@ -10,9 +10,11 @@ public class Tweet {
 	public String id1, id2;
 	//not sure if this should be stored as string or Date()
 	public String date;
+	public String stock;
 	
 	public ArrayList<String> features;
 	public List<String> tokensSplitWhitespace;
+	public List<AnnotatedToken> tokensMarkup;
 
 	public Tweet(String id1, String id2, String t, int s, int e, String label, String date){
 		this.id1 = id1;
