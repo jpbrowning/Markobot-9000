@@ -20,14 +20,14 @@ public class YahooScanner {
 					"http://finance.yahoo.com/d/quotes.csv?s=" + symbol
 							+ "&f=sl1d1t1c1ohgv&e=.csv");
 			URLConnection yc = yahoofinance.openConnection();
-			BufferedReader in = new BufferedReader(new InputStreamReader(
+			BufferedReader brin = new BufferedReader(new InputStreamReader(
 					yc.getInputStream()));
 
 			String inputLine;
-			while ((inputLine = in.readLine()) != null) {
+			while ((inputLine = brin.readLine()) != null) {
 				Line = inputLine.split(",");
 			}
-			in.close();
+			brin.close();
 		} catch (IOException ex) {
 
 			System.out.println("Bad symbol.");
