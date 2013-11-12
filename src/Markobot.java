@@ -22,12 +22,19 @@ class Markobot {
 		while(!input.equals("2")) {
 			
 			if(input.equals("1")) {
-				System.out.print("\nPrice grabbing has begun. Output files will be saved to parent directory.\n");
+				System.out.print("\nPrice grabbing has begun. Output files will be saved to \"prices\" directory.\n");
 				grabbing = true;
 				collect();
 			}
 			else {
 				System.out.println("\nInvalid input.\n");
+			}
+			
+			// Pause to create directory before printing menu.
+			try {
+			    Thread.sleep(1000);
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
 			}
 			
 			menu();
@@ -37,6 +44,7 @@ class Markobot {
 		System.exit(0);
 	}
 	
+	// Prints the menu for Markobot.
 	public static void menu() {
 		if(!grabbing){
 			System.out.println("\t1. Begin collecting data.");
@@ -44,6 +52,7 @@ class Markobot {
 		System.out.println("\t2. Quit program.\n");
 	}
 	
+	// This sets up the thread to collect prices once an hour.
 	public static void collect() {
 
 		stocks = new ArrayList<PriceCollection>();

@@ -4,6 +4,7 @@ public class Price {
 	public String date;
 	public String time;
 
+	// Basic constructor.
 	public Price(String s, double v, String d, String t) {
 		this.symbol = s;
 		this.value = v;
@@ -11,6 +12,7 @@ public class Price {
 		this.time = t;
 	}
 
+	// Basic toString() method.
 	public String toString() {
 		return (symbol + " " + value + " " + date + " " + time);
 	}
