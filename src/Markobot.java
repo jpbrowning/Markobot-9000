@@ -18,19 +18,21 @@ class Markobot {
 		
 		System.out.println("Welcome to MarkoBot-9000\n");		
 		menu();
-		input = Integer.parseInt(in.nextLine());;
+		input = Integer.parseInt(in.nextLine());
 		while(input != 2) {
 			if(input == 1) {
-				System.out.print("Price grabbing has begun. Output will be saved to parent directory.\n");
+				System.out.print("Price grabbing has begun. Output files will be saved to parent directory.\n");
 				grabbing = true;
 				collect();
 			}
 			menu();
 			input = Integer.parseInt(in.nextLine());
-		}		
+		}
+		
+		System.exit(0);
 	}
 	
-	public static void menu(){
+	public static void menu() {
 		if(!grabbing){
 			System.out.println("\t1. Begin collecting data.");
 		}
@@ -54,6 +56,6 @@ class Markobot {
 							s.writeOut();
 						}
 					}
-				}, 0, 1, TimeUnit.HOURS);
+				}, 0, 5, TimeUnit.SECONDS);
 	}
 }
