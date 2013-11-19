@@ -14,5 +14,33 @@ public class HourlySent {
 	public String toString() {
 		return (symbol + " " + sentiment + " " + date + " " + time);
 	}
+	
+	public String getSym(){
+		return this.symbol;
+	}
+	
+	public double getSentiment(){
+		return this.sentiment;
+	}
+	
+	public String getSentimentString(){
+		if(this.sentiment == -1){
+			return "NEG";
+		}
+		else if(this.sentiment == 0){
+			return "NEUT";
+		}
+		else{
+			return "POS";
+		}
+	}
+	
+	public String getDate(){
+		return this.date;
+	}
+	
+	public String getTime(){
+		return this.time;
+	}
 
 }

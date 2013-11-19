@@ -14,5 +14,21 @@ public class Price {
 	public String toString() {
 		return (symbol + " " + value + " " + date + " " + time);
 	}
+	
+	public double getPrice(){
+		return this.value;
+	}
+	
+	public String getDate(){
+		return this.date;
+	}
+	
+	public String getTime(){
+		return this.time;
+	}
+	
+	public String getSym(){
+		return this.symbol;
+	}
 
 }
