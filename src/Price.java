@@ -18,7 +18,7 @@ public class Price {
 	}
 	
 	public String getTime() {
-		return time;
+		return this.time;
 	}
 
 }
