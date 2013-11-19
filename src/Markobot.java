@@ -22,7 +22,7 @@ class Markobot {
 		while(!input.equals("2")) {
 			
 			if(input.equals("1")) {
-				System.out.print("\nPrice grabbing has begun. Output files will be saved to \"prices\" directory.\n");
+				System.out.print("\nPrice grabbing has begun. Output files will be saved to \"prices\" directory.\n\n");
 				grabbing = true;
 				collect();
 			}

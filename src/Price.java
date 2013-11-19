@@ -16,5 +16,9 @@ public class Price {
 	public String toString() {
 		return (symbol + " " + value + " " + date + " " + time);
 	}
+	
+	public String getTime() {
+		return time;
+	}
 
 }

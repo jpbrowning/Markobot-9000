@@ -50,19 +50,20 @@ public class PriceCollection {
 		String filename = "../prices/" + calendar.get(Calendar.DATE) + "-"
 				+ (calendar.get(Calendar.MONTH) + 1) + "-"
 				+ calendar.get(Calendar.YEAR) + "-" + "S" + "-" + symbol;
-
-		FileWriter fw;
-		try {
-			fw = new FileWriter(filename, true);
-			for (Price p : prices) {
-				fw.write(p.toString() + "\n");
-
+		
+		if(Calendar.HOUR_OF_DAY > 9 && Calendar.HOUR_OF_DAY < 17) {
+			FileWriter fw;
+			try {
+				fw = new FileWriter(filename, true);
+				for (Price p : prices) {
+					fw.write(p.toString() + "\n");
+	
+				}
+				fw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			fw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-
 	}
 }
