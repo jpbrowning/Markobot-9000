@@ -12,7 +12,7 @@ public class Tweet {
 	public String tweet;
 	public int startOffset;
 	public int endOffset;
-	public String label;
+	public String label;//sentiment
 	public String id1, id2;
 	//not sure if this should be stored as string or Date()
 	public String date;
