@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Markobot-9000">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../opt/eclipse"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Markobot-9000.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="../stanfordjars/stanfordjars/ant-contrib-1.0b3.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/AppleJavaExtensions.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/arpack.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/azurebing.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/BerkeleyParser.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/collections-generic-4.01.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/colt.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/commons-codec-1.7.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/commons-compress-1.3.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/commons-lang-2.5.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/commons-logging.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/commons-logging-1.1.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/commons-math-2.1.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/counters.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/dbparser.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/ejml.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/FastRandomForest-0.98.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/fastutil.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/faust-gazetteer-1.0.3003.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/flanagan.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/hadoop-core.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/htmlparser.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/html-parser.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/httpclient.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/httpcore.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/httpmime.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/Jama.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/java-json-org.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/javamail-1.4.5.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/javaml-0.1.5.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/javax.servlet.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jaws-bin.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jblas-1.2.0.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jcommon-1.0.16.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jdom.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/je.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jedis.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/JFlex.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jfreechart.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jgraph.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jgrapht.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/joda-time.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jollyday-0.4.7.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jsoup.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jsr173_1.0_api.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jtidy-r938.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jung.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/junit.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/jwnlx.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/liblinear.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/libsvm.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/log4j-1.2.16.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/lucene-core-3.0.3.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/lucene-demos-3.0.3.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/maltparser.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/mtj.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/mysql.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/mysql-connector-java-5.1.10-bin.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/nateall.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/netlib.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/opencsv.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/owlapi-bin.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/paranamer.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/propbank.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/protobuf-java-2.3.0.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/ra.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/reverb.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/serializer.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/slf4j-api.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/slf4j-simple.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/solrj.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/sqlite-jdbc.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/stax-1.2.0.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/tmt-0.4.0.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/trove.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/weka.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/wn.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/ws-commons-util-1.0.2.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/wstx-asl.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/xalan.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/xercesImpl.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/xml-apis.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/xmlrpc-common-3.1.2.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/xmlrpc-server-3.1.2.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/xom-1.2.8.jar"/>
+        <pathelement location="../stanfordjars/stanfordjars/yahoo_search.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="Markobot-9000.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Markobot">
+        <java classname="Markobot" failonerror="true" fork="yes">
+            <classpath refid="Markobot-9000.classpath"/>
+        </java>
+    </target>
+</project>
