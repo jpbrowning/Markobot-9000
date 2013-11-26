@@ -19,6 +19,8 @@ public class SwagMath {
 	//maps each stock Symbol to a list of its hourly sentiments
 	public Map<String, List<HourlySent>> sentmap = new HashMap<String, List<HourlySent>>();
 	
+	Map<String, StockTrend> trendmap = new HashMap<String, StockTrend>();//stays null until findTrends is called in YOLO()
+	
 	//constructor with 4 standard stocks
 	public SwagMath(){
 		stockmap.put("GOOG", new ArrayList<Price>());
@@ -97,16 +99,13 @@ public class SwagMath {
 			}
 		}
 		
-		//Output the correlation for a given date, time
+		//Output the correlation for a given date, time in an
 		//Array list of the four stocks with values in the format:
 			//SYM-[UP|DOWN]-[POS|NEG|NEUT]
 		public List<String> hourlyCorrelation(String dateone, String timeone, String datetwo, String timetwo){
 			List<String> results = new ArrayList<String>();
 			for(String sym : stockmap.keySet()){
-				//////////////Next thing to do************///////////////
-				//if price at datetwo, timetwo is greater than dateone, timeone and 
-				//sent at datetwo, timetwo is POS, output GOOG-UP-POS
-				//repeat for all for cases for each stock
+				//initializations
 				List<Price> stockprices = stockmap.get(sym);
 				List<HourlySent> stocksent = sentmap.get(sym);
 				Price pone = null;
@@ -139,10 +138,90 @@ public class SwagMath {
 					results.add(sym+"-"+"UP"+"-"+stwo.getSentimentString());
 				}
 				//Price went down
-				else{
+				else if (pone.getPrice() > ptwo.getPrice()){
 					results.add(sym+"-"+"DOWN"+"-"+stwo.getSentimentString());
+				}
+				//Price stayed the same
+				else{
+					results.add(sym+"-"+"NEUT"+"-"+stwo.getSentimentString());
 				}
 			}
 			return results;
 		}
+		
+		//Finds the trend of the stocks based off of many hourly inputs
+		//Outputs a map of stock SYMs to their StockTrends where each trend can call getSentTrend("POS|NEG|NEUT") to get "UP|DOWN|NEUT" average correlation for the sentiment
+		public Map<String, StockTrend> findTrends(){
+			
+			//creates a list of StockTrends of Size equal to the number of stocks in stockmap
+			Map<String, StockTrend> strends = new HashMap<String, StockTrend>();
+			for(String s : stockmap.keySet()){
+				strends.put(s, new StockTrend(s));
+			}
+			
+			//for the number of prices currently stored:
+			List<Price> pricelist = stockmap.get("GOOG");//all stocks should have the same number of prices
+			for(int i = 1; i < pricelist.size(); i++){
+				//hourlyCorrelation for this price/sent given the previous one
+				List<String> onehour = hourlyCorrelation(pricelist.get(i-1).getDate(), pricelist.get(i-1).getTime(), pricelist.get(i).getDate(), pricelist.get(i).getTime());
+				//
+				for(String s: onehour){
+					String[] sray = s.split("-");
+					//sray should have 3 elements: SYM, UP|DOWN|NEUT, POS|NEG|NEUT
+					//price goes up, add to counter for sent
+					if(sray[1]=="UP"){
+						if(sray[2]=="POS"){
+							strends.get(sray[0]).add("POS");
+						}
+						else if (sray[2] == "NEG"){
+							strends.get(sray[0]).add("NEG");
+						}
+						else{
+							strends.get(sray[0]).add("NEUT");
+						}
+					}
+					//price goes down, subtract from counter for sent
+					else if(sray[1]=="DOWN"){
+						if(sray[2]=="POS"){
+							strends.get(sray[0]).sub("POS");
+						}
+						else if (sray[2] == "NEG"){
+							strends.get(sray[0]).sub("NEG");
+						}
+						else{
+							strends.get(sray[0]).sub("NEUT");
+						}
+					}
+					//price stays neutral, don't change counters for sent; i.e. do nothing
+					else{}
+				}
+			}
+			//do the final magic
+			for(String s : strends.keySet()){
+				strends.get(s).makeTrends();//outputs an ArrayList if I want to use it. Also changes the sentiment reaction values in the StockTrend
+			}
+			
+			//output map of StockTrends
+			return strends;
+		}
+		
+		//calls all other necessary functions to do the work of the program
+/*		public void YOLO(){
+			///read all sentiment and stock txt files
+			for(//File f : Folder of text files){
+					read(f);
+			}
+			
+			trendmap = findTrends();
+					
+			//Print line outputs for now
+			for(String s : trendmap.keySet()){
+				
+				System.out.println(s+" : "+"with POS sent prices go : "+trendmap.get(s).getSentTrend("POS"));
+				System.out.println(s+" : "+"with NEG sent prices go : "+trendmap.get(s).getSentTrend("NEG"));
+				System.out.println(s+" : "+"with NEUT sent prices go : "+trendmap.get(s).getSentTrend("NEUT"));
+				
+			}
+		}
+*/
 }
