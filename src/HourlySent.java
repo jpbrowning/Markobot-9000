@@ -1,6 +1,6 @@
 public class HourlySent {
 	public String symbol;
-	public double sentiment;//-1 = NEG, 0 = NEUTRAL, 1 = POS
+	public double sentiment;//< 0 = NEG, 0 = NEUTRAL, > 0 = POS
 	public String date;
 	public String time;
 	
@@ -24,7 +24,7 @@ public class HourlySent {
 	}
 	
 	public String getSentimentString(){
-		if(this.sentiment == -1){
+		if(this.sentiment < 0){
 			return "NEG";
 		}
 		else if(this.sentiment == 0){

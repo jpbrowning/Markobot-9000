@@ -19,6 +19,9 @@ class Markobot {
       data.writeOut();
       data.printOut();
       
+      SwagMath sm = new SwagMath();
+      sm.YOLO();
+      
       in.close();
    }
 }
