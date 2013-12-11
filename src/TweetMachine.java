@@ -20,7 +20,7 @@ public class TweetMachine {
 	public static final String[] googTags = {"google", "goog" };
 	public static final String[] sonyTags = {"sne", "sony", "playstation", "ps4", "ps3"};
 	public static final String[] appTags = {"aapl", "apple", "iphone", "ipod", "osx" };
-	public static final String[] microTags = {"msft", "microsoft", "xbox" };
+	public static final String[] microTags = {"msft", "microsoft", "xbox", "windows", "windowsphone" };
 	private static String infile;
 	static Classifier<String, String> classifier = null;
 	static BufferedReader tweetReader = null;
