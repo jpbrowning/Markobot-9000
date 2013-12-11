@@ -125,14 +125,17 @@ public class SwagMath {
 						for(String[] ssray : compiledlines ){
 	//						System.out.println("HERE compiled lines size: "+compiledlines.size());
 							if(ssray[3].equals(hoursent[3])){
-								System.out.println("changing a compiled line");
-								ssray[1] += hoursent[1];
+//								System.out.println("changing a compiled line");
+//								System.out.println(ssray[0]+" SSRAY[1] BEFORE at time "+ssray[3]+" :"+ssray[1]);
+								int newsent = (Integer.parseInt(ssray[1]) + Integer.parseInt(hoursent[1]));
+								ssray[1] = ""+newsent;//hopefully force cast to string
+//								System.out.println(ssray[0]+" SSRAY[1] AFTER  at time "+ssray[3]+" :"+ssray[1]+"\n");
 								check = false;
 							}
 						}
 						//if there was no line with same time
 						if(check){
-								System.out.println("adding new compiled line");
+//								System.out.println("adding new compiled line");
 								compiledlines.add(hoursent);
 						}
 					}
@@ -145,31 +148,28 @@ public class SwagMath {
 				
 				/////ASSUMING Tweet/HourlySent Class outputs to file 24 lines of 
 				/////	symbol + " " + sentiment + " " + date + " " + time/////
+//				System.out.println("For file: "+file);
 				for(String[] hoursent2 : compiledlines){
-					
 					HourlySent hs = new HourlySent(hoursent2[0], Double.parseDouble(hoursent2[1]), hoursent2[2], hoursent2[3]);
 					
+//					System.out.println(hs.getDate()+ " "+ hs.getTime()+" "+hs.getSentiment());
 					
-					//check to see if most recent sentiment and mark if it is
+					//check to see if most recent sentiment and update if it is
 					if(hoursent2[0].equals("\"GOOG\"")){
 						gresent = moreRecent(gresent, hs);
-						System.out.println("gresent updated");
 					}
 					else if(hoursent2[0].equals("\"AAPL\"")){
 						aresent = moreRecent(aresent, hs);
-						System.out.println("aresent updated with: "+aresent.getDate()+"  "+aresent.getTime());
 					}
 					else if(hoursent2[0].equals("\"SNE\"")){
 						sresent = moreRecent(sresent, hs);
-						System.out.println("sresent updated");
 					}
 					else{
 						mresent = moreRecent(mresent, hs);
-						System.out.println("mresent updated");
 					}
 					
 					
-					System.out.println("HourlySent Object in readStock: \n"+"Symbol: "+hs.getSym()+" Sentiment: "+hs.getSentiment()+" Date: "+hs.getDate()+" Time: "+hs.getTime());
+//					System.out.println("HourlySent Object in readStock: \n"+"Symbol: "+hs.getSym()+" Sentiment: "+hs.getSentiment()+" Date: "+hs.getDate()+" Time: "+hs.getTime());
 					//add price to list of prices mapped at symbol hoursent2[0]
 					List<HourlySent> l = sentmap.get(hoursent2[0]);
 					l.add(hs);
@@ -302,20 +302,20 @@ public class SwagMath {
 				//Price went up
 				else if(pone.getPrice() < ptwo.getPrice()){
 					results.add(sym+"-"+"UP"+"-"+sone.getSentimentString());
-					System.out.println("In hourlyCorrelation:\n pone price: "+pone.getPrice()+" and ptwo price: "+ptwo.getPrice());
-					System.out.println("Added to results: "+sym+"-"+"UP"+"-"+sone.getSentimentString());
+//					System.out.println("In hourlyCorrelation:\n pone price: "+pone.getPrice()+" and ptwo price: "+ptwo.getPrice());
+//					System.out.println("Added to results: "+sym+"-"+"UP"+"-"+sone.getSentimentString());
 				}
 				//Price went down
 				else if (pone.getPrice() > ptwo.getPrice()){
 					results.add(sym+"-"+"DOWN"+"-"+sone.getSentimentString());
-					System.out.println("In hourlyCorrelation:\n pone price: "+pone.getPrice()+" and ptwo price: "+ptwo.getPrice());
-					System.out.println("Added to results: "+sym+"-"+"DOWN"+"-"+sone.getSentimentString());
+//					System.out.println("In hourlyCorrelation:\n pone price: "+pone.getPrice()+" and ptwo price: "+ptwo.getPrice());
+//					System.out.println("Added to results: "+sym+"-"+"DOWN"+"-"+sone.getSentimentString());
 				}
 				//Price stayed the same
 				else{
 					results.add(sym+"-"+"NEUT"+"-"+sone.getSentimentString());
-					System.out.println("In hourlyCorrelation:\n pone price: "+pone.getPrice()+" and ptwo price: "+ptwo.getPrice());
-					System.out.println("Added to results: "+sym+"-"+"NEUT"+"-"+sone.getSentimentString());
+//					System.out.println("In hourlyCorrelation:\n pone price: "+pone.getPrice()+" and ptwo price: "+ptwo.getPrice());
+//					System.out.println("Added to results: "+sym+"-"+"NEUT"+"-"+sone.getSentimentString());
 				}
 			}
 			return results;
@@ -344,7 +344,6 @@ public class SwagMath {
 //					System.out.println("s in this for loop is "+ s+" and sray[1] is "+sray[1]+" and sray[2] is "+sray[2]);
 					if(sray[1].equals("UP")){
 						if(sray[2].equals("POS")){
-							System.out.println("adding to UP, POS in strends for "+sray[0]);
 							strends.get(sray[0]).add("POS");
 						}
 						else if (sray[2].equals("NEG")){
@@ -385,7 +384,6 @@ public class SwagMath {
 			File f = new File("./prices");
 			ArrayList<String> names = new ArrayList<String>(Arrays.asList(f.list()));
 			for(String s : names){
-					System.out.println("filename: "+s);
 					read(s);
 			}
 			
@@ -393,11 +391,20 @@ public class SwagMath {
 					
 			//Print line outputs for now
 			for(String s : trendmap.keySet()){
-				
+				System.out.println();
 				System.out.println(s+" : with POS sent prices go : "+trendmap.get(s).getSentTrend("POS"));
 				System.out.println(s+" : with NEG sent prices go : "+trendmap.get(s).getSentTrend("NEG"));
 				System.out.println(s+" : with NEUT sent prices go : "+trendmap.get(s).getSentTrend("NEUT"));
-				
+				switch(s.toLowerCase().charAt(1)){
+					case 'a': System.out.println(s+" has current sentiment of "+aresent.getSentimentString()+
+							" so you should "+trendmap.get(s).buySell(aresent.getSentimentString())+" "+s); break;
+					case 'g': System.out.println(s+" has current sentiment of "+gresent.getSentimentString()+
+							" so you should "+trendmap.get(s).buySell(gresent.getSentimentString())+" "+s); break;
+					case 's': System.out.println(s+" has current sentiment of "+sresent.getSentimentString()+
+							" so you should "+trendmap.get(s).buySell(sresent.getSentimentString())+" "+s); break;
+					case 'm': System.out.println(s+" has current sentiment of "+mresent.getSentimentString()+
+							" so you should "+trendmap.get(s).buySell(mresent.getSentimentString())+" "+s); break;
+				}
 			}
 		}
 

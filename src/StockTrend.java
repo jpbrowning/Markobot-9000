@@ -121,4 +121,19 @@ public class StockTrend {
 	public String getSYM(){
 		return this.SYM;
 	}
+
+	//returns BUY, SELL, or NOT BUY/SELL
+	public String buySell(String currentsent){
+		String trend = getSentTrend(currentsent);
+		if(trend == "UP"){
+			return "BUY";
+		}
+		else if(trend == "DOWN"){
+			return "SELL";
+		}
+		else{//trend is NEUT
+			return "NOT BUY/SELL";
+		}
+	}
+
 }
