@@ -1,0 +1,141 @@
+<!-- USNA Research Code build file -->
+<!-- This assumes you have JavaNLP code one level up. -->
+<!-- Make sure ../javanlp exists. -->
+
+<project name="Markobot-9000" default="compile" basedir="/home/mids/m140228/git/Markobot-9000">
+
+  <property name="build.path"     value="${basedir}/classes" />
+  <property name="source.path"    value="${basedir}/src" />
+ 
+  <property name="compile.debug"       value="true"/>
+  <property name="compile.deprecation" value="false"/>
+  <property name="compile.optimize"    value="true"/>
+  <property name="compile.source"      value="1.6" />
+  <property name="compile.target"      value="1.6" />
+<!--  <property name="compile.encoding"    value="utf-8" /> -->
+
+  <target name="classpath" description="Sets the classpath">
+    <echo message="${ant.project.name}" />
+    <path id="classpath">
+      <pathelement path="${basedir}/lib/opennlp-tools-1.3.0.jar"/>
+      <pathelement path="${basedir}/lib/jwnl-1.3.3.jar"/>
+      <pathelement path="${basedir}/lib/lucene.jar"/>
+      <pathelement path="${basedir}/lib/lpsolve55j.jar"/>
+      <pathelement path="${basedir}/lib/junit.jar"/>
+      <pathelement path="${basedir}/lib/jdom.jar"/>
+
+      <fileset dir="${basedir}/../stanfordjars">
+        <include name="*.jar"/>
+        <exclude name="javanlp*"/>
+      </fileset>
+
+  </path>
+</target>
+
+  <target name="clean" description="Delete old classes">
+    <echo message="${ant.project.name}" />
+    <delete includeemptydirs="true">
+       <fileset dir="${build.path}/" includes="**/*"/>
+     </delete>
+  </target>
+
+  <target name="compile" depends="classpath"
+          description="Compile core sources">
+    <echo message="${ant.project.name}" />
+    <mkdir    dir="${build.path}" />
+    <javac srcdir="${source.path}"
+          destdir="${build.path}"
+            debug="${compile.debug}"
+      deprecation="${compile.deprecation}"
+         optimize="${compile.optimize}"
+           source="${compile.source}"
+           target="${compile.target}">
+<!--         encoding="${comiple.encoding}" -->
+        <classpath refid="classpath" />
+      <!-- <compilerarg value="-Xmaxerrs"/>
+           <compilerarg value="20"/> -->
+      <!-- <compilerarg value="-Xlint"/> -->
+    </javac>
+  </target>
+
+  <target name="reading" depends="classpath"
+          description="Compile reading project code">
+    <echo message="${ant.project.name}" />
+    <mkdir    dir="${build.path}" />
+    <javac srcdir="${reading.path}"
+          destdir="${build.path}"
+            debug="${compile.debug}"
+      deprecation="${compile.deprecation}"
+         optimize="${compile.optimize}"
+           source="${compile.source}"
+           target="${compile.target}">
+        <classpath refid="classpath" />
+    </javac>
+  </target>
+
+  <target name="nate" depends="classpath"
+          description="Compile nate project code">
+    <echo message="${ant.project.name}" />
+    <mkdir    dir="${build.path}" />
+    <javac srcdir="${nate.path}"
+          destdir="${build.path}"
+            debug="${compile.debug}"
+      deprecation="${compile.deprecation}"
+         optimize="${compile.optimize}"
+           source="${compile.source}"
+           target="${compile.target}">
+        <classpath refid="classpath" />
+    </javac>
+  </target>
+
+  <target name="util" depends="classpath"
+          description="Compile util project code">
+    <echo message="${ant.project.name}" />
+    <mkdir    dir="${build.path}" />
+    <javac srcdir="${util.path}"
+          destdir="${build.path}"
+            debug="${compile.debug}"
+      deprecation="${compile.deprecation}"
+         optimize="${compile.optimize}"
+           source="${compile.source}"
+           target="${compile.target}">
+        <classpath refid="classpath" />
+    </javac>
+  </target>
+
+  <target name="all" depends="clean,compile"
+          description="Clean and re-compile." />
+
+  <!-- This runs the specified class, using a separate Java VM -->
+  <!-- Specify class to run via "run.class," arg, i.e., -->
+  <!--       ant run -Drun.class=edu.stanford.nlp.tagger.maxent.MaxentTaggerGUI -->
+  <!-- Use "jvmarg" to pass arguments to the VM, use "arg" to pass cmdline args to the class -->
+  <target name="run" depends="classpath">
+    <java classname="${run.class}" fork="true" jvm="java">
+      <jvmarg value="-Xmx2g"/>
+      <jvmarg value="-server"/>
+      <classpath>
+	<path refid="classpath"/>
+	<pathelement path="${build.path}"/>
+      </classpath>
+    </java>
+  </target>
+
+  <!-- Same as "run," except causes the VM to wait until debugger is attached -->
+  <!-- See http://nlp.stanford.edu/javanlp/did_you_know/eclipse_debug.html for example -->
+  <target name="run-debug" depends="classpath">
+    <java classname="${run.class}" fork="true" jvm="java">
+      <jvmarg value="-Xmx2g"/>
+      <!-- Following args should cause this to freeze and wait for debug attach -->
+      <jvmarg value="-Xdebug"/>
+      <jvmarg value="-Xnoagent"/>
+      <jvmarg value="-Djava.compiler=None"/>
+      <jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9099"/>
+      <classpath>
+	<path refid="classpath"/>
+	<pathelement path="${build.path}"/>
+      </classpath>
+    </java>
+  </target>
+
+</project>

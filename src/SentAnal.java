@@ -45,6 +45,7 @@ public class SentAnal {
 	Mood posWords = new Mood("/courses/nchamber/nlp/lab4/data/lexicon/positive-words.txt");
 	Mood negWords = new Mood("/courses/nchamber/nlp/lab4/data/lexicon/negative-words.txt");
 	
+	
 	//main method, will be used to train and save a classifier
 	public static void main(String[] args){
 		if(args.length < 2){
@@ -85,6 +86,15 @@ public class SentAnal {
 		
 	}
 
+	public static String whatItIs(Tweet t, Classifier<String, String> thisClass){
+		Tweet copy = t;
+		ClassifiedDatum<String, String> tweet = classifyTweet(copy, thisClass);
+		
+		return tweet.getPredictedLabel();
+		
+		
+	}
+	
 	private static void writeToFile(String string, ArrayList<Tweet> testData,
 			ArrayList<ClassifiedDatum<String, String>> results) {
 		
@@ -161,23 +171,7 @@ public class SentAnal {
 			words.incrementCount(clean);
 		}
 		
-		//bigrams
-		for(int xx = start; xx < end; xx++){
-			String pre = "<s>";
-			if( xx > 0) pre = t.tokensMarkup.get(xx - 1).get("clean");
-			String clean = t.tokensMarkup.get(xx).get("clean");
-			words.incrementCount(pre + clean);
-		}
-		
-		//trigrams
-		for(int xx = start; xx < end; xx++){
-			String pre1 = "<s>";
-			String pre2 = "<s>";
-			if( xx > 0) pre1 = t.tokensMarkup.get(xx - 1).get("clean");
-			if( xx > 1) pre2 = t.tokensMarkup.get(xx - 2).get("clean");
-			String clean = t.tokensMarkup.get(xx).get("clean");
-			words.incrementCount(pre2 + " " + pre1 + " " + clean);
-		}
+
 		
 		//XX patterns
 		String pre = "<s>";

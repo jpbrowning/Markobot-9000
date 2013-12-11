@@ -31,6 +31,20 @@ public class Tweet {
 		this.tokenize();
 	}
 	
+	public Tweet( String t, int s, int e, String label, String date, String stock){
+		
+		this.tweet = t;
+		this.startOffset = s;
+		this.endOffset = e;
+		this.label = label;
+		this.date = date;
+		this.stock = stock;
+		this.features = new ArrayList<String>();
+		this.tokenize();
+	}
+	
+	
+	
 
 public void tokenize()
 {
