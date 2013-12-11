@@ -14,7 +14,8 @@ public class AnnotatedToken {
   public AnnotatedToken(String str) {
     token = str;
   }
-
+  
+  
   public String token() {
     return token;
   }

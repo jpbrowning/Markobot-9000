@@ -46,6 +46,7 @@ public class SentAnal {
 	Mood posWords = new Mood("/courses/nchamber/nlp/lab4/data/lexicon/positive-words.txt");
 	Mood negWords = new Mood("/courses/nchamber/nlp/lab4/data/lexicon/negative-words.txt");
 	
+	
 	//main method, will be used to train and save a classifier
 	public static void main(String[] args){
 		if(args.length < 2){
@@ -87,6 +88,15 @@ public class SentAnal {
 		
 	}
 
+	public static String whatItIs(Tweet t, Classifier<String, String> thisClass){
+		Tweet copy = t;
+		ClassifiedDatum<String, String> tweet = classifyTweet(copy, thisClass);
+		
+		return tweet.getPredictedLabel();
+		
+		
+	}
+	
 	private static void writeToFile(String string, ArrayList<Tweet> testData,
 			ArrayList<ClassifiedDatum<String, String>> results) {
 		
